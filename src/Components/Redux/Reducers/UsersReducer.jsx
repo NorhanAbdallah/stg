@@ -1,26 +1,33 @@
-import {FETCH_USERS_BEGIN, FETCH_USERS_SUCCESS, FETCH_USERS_FAILED} from '../Action/types';
+import {USERS_FETCH, USER_EDIT, USER_REMOVE} from '../Action/types';
 
 const initalState = {
-    users: []
+    list: []
+   
 }
 
 export default function userReducer (state = initalState , action) {
+    // console.log("ss",action.payload.users)
+    console.log("ssdss",state)
+
+    
     switch(action.type){
-        case FETCH_USERS_BEGIN:
-            return {
-                ...state
-            }
-        
-        case FETCH_USERS_SUCCESS: 
+
+        case USERS_FETCH: 
             return {
                 ...state,
-                users: action.payload.users
+                list: action.payload
             } 
             
-        case FETCH_USERS_FAILED:
+        case USER_EDIT:
+            return{
+               ...state,
+                list: action.payload.users
+               
+            }   
+        case USER_REMOVE:
             return{
                 ...state,
-                users: []
+                list: []
             }   
         default:
             return state     
